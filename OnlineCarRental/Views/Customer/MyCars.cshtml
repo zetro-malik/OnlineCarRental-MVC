@@ -1,0 +1,79 @@
+﻿@model IEnumerable<OnlineCarRental.Models.carNDshop>
+
+@{
+    ViewBag.Title = "MyCars";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h2>My Cars</h2>
+
+<table class="table">
+    <tr>
+        <th>
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.conditon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.carno)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.shopname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@Url.Content("~/Images/"+item.img)" style="width: 100px; height: 100px; object-fit: cover; border-radius:0%;" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.conditon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.carno)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.shopname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+ 
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,82 @@
+﻿@model IPagedList<OnlineCarRental.Models.carNDshop>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "FindCar";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h2>Find Car</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("FindCar", "Customer", FormMethod.Post))
+{
+    @Html.Label("Enter Price")
+    <br />
+    <input type="number" name="startprice" placeholder="Starting price" />
+    <span>TO</span>
+    <input type="number" name="endprice" placeholder="Ending price" />
+    <input type="submit" value="Search" />
+}
+
+@if (Model.Any())
+{
+    <table class="table">
+       
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@Url.Content("~/Images/"+item.img)" style="width: 100px; height: 100px; object-fit: cover; border-radius:0%;" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.conditon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.rent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.carno)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.shopname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone)
+                </td>
+
+                <td>
+                    <div style="background-color:aquamarine; width:50px;">
+                        @Html.ActionLink("Rent", "Rent", new { id = item.Id, shopid = item.shopid })
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <br />
+    <br />
+    <h1 align="center">@ViewBag.NoData</h1>
+}
+
+@Html.PagedListPager(Model, page => Url.Action("FindCar", new { page }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true })
+
+
